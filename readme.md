@@ -7,11 +7,9 @@
 - сделать удобный сервис для себя и своих друзей
 
 
-Впн-сервер живет на сервере в дата-центре в Москве.
-
 ## Установка сервера
 
 ```
-ansible-playbook -i inventory.ini playbooks/init-xray-server.yaml
+ansible-playbook -i inventory.ini playbooks/install-openvpn.yaml
 ```
 

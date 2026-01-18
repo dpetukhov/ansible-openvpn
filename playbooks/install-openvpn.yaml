@@ -1,0 +1,11 @@
+---
+
+
+- hosts: openvpn
+  become: yes
+  pre_tasks:
+    - include_tasks: tasks/apt_update.yaml
+  roles:
+    - name: openvpn
+  handlers:
+    - include_tasks: handlers.yaml

@@ -1,0 +1,9 @@
+---
+
+- name: Ensure a list of packages is installed
+  ansible.builtin.package:
+    name:
+      - openvpn
+      - ca-certificates
+      - easy-rsa
+    state: present

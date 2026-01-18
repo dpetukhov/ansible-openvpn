@@ -1,0 +1,68 @@
+---
+
+- name: reload nginx
+  become: yes
+  become_user: root
+  command: /usr/sbin/nginx -s reload
+
+- name: reload systemd
+  systemd: daemon_reload=yes
+
+- name: restart bind9
+  service: name=bind9 state=restarted
+
+- name: restart nginx
+  service: name=nginx state=restarted
+
+- name: restart tor
+  service: name=tor state=restarted
+
+- name: restart postfix
+  service: name=postfix state=restarted
+
+- name: restart fail2ban
+  service: name=fail2ban state=restarted
+
+- name: restart ssh
+  service: name=ssh state=restarted
+
+- name: restart ufw
+  service: name=ufw state=restarted
+
+- name: restart php-fpm
+  service: name=php5-fpm state=restarted
+
+- name: restart mysql
+  service: name=mysql state=restarted
+
+- name: restart memcached
+  service: name=memcached state=restarted
+
+- name: restart autofs
+  service: name=autofs state=restarted
+
+- name: restart telegraf
+  service: name=telegraf state=restarted
+
+- name: restart server
+  command: /sbin/reboot
+
+- name: reconfigure tzdata
+  command: dpkg-reconfigure -f noninteractive tzdata
+
+- name: update exports
+  command: /usr/sbin/exportfs -ra
+
+- name: iptables save
+  command: /usr/sbin/netfilter-persistent save
+  become: yes
+  become_user: root
+
+- name: restart apparmor
+  service: name=apparmor state=restarted
+
+- name: restart unattended upgrades
+  service: name=unattended-upgrades state=restarted
+
+- name: restart blog docker
+  command: /usr/bin/docker restart blog
